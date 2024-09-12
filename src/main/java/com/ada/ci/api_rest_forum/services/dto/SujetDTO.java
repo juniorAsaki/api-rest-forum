@@ -14,9 +14,9 @@ public class SujetDTO {
 
     private String title;
 
-    private Forum forum;
+    private ForumDTO forum;
 
-    private Message message;
+    private MessageDTO message;
 
     private String slug;
 }
