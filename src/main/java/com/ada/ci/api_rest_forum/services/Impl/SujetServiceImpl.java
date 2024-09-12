@@ -7,6 +7,7 @@ import com.ada.ci.api_rest_forum.services.mapper.SujetMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,25 +26,9 @@ public class SujetServiceImpl implements SujetService {
     }
 
     @Override
-    public List<SujetDTO> findAll() {
-        return sujetRepository.findAll().stream().map(sujetMapper::ToDto).toList();
+    public List<SujetDTO> findByForum(Long forumId) {
+        return Collections.singletonList(sujetMapper.ToDto(sujetRepository.findByForum(forumId)));
     }
 
-    @Override
-    public Optional<SujetDTO> findOne(Long id) {
-        return sujetRepository.findById(id).map(sujetMapper::ToDto);
-    }
 
-    @Override
-    public void delete(Long id) {
-        sujetRepository.deleteById(id);
-    }
-
-    @Override
-    public SujetDTO update(SujetDTO sujetDTO) {
-        return findOne(sujetDTO.getIdSujet()).map(existingSujet ->{
-            existingSujet.setTitle(sujetDTO.getTitle());
-            return existingSujet;
-        }).orElseThrow(()-> new IllegalArgumentException("Sujet id not found"));
-    }
 }

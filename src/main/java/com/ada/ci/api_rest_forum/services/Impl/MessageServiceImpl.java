@@ -1,4 +1,7 @@
 package com.ada.ci.api_rest_forum.services.Impl;
 
-public class MessageServiceImpl {
+import com.ada.ci.api_rest_forum.services.MessageService;
+
+
+public class MessageServiceImpl{
 }

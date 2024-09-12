@@ -8,8 +8,5 @@ import java.util.Optional;
 public interface SujetService {
 
     SujetDTO save(SujetDTO sujetDTO);
-    List<SujetDTO> findAll();
-    Optional<SujetDTO> findOne(Long id);
-    void delete(Long id);
-    SujetDTO update(SujetDTO sujetDTO);
+    List<SujetDTO> findByForum(Long forumId);
 }
