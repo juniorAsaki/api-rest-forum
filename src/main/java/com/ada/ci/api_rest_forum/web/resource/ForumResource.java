@@ -2,10 +2,15 @@ package com.ada.ci.api_rest_forum.web.resource;
 
 
 import com.ada.ci.api_rest_forum.services.ForumService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ada.ci.api_rest_forum.services.dto.ForumDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -20,21 +25,14 @@ public class ForumResource {
 
     @PostMapping
     public ResponseEntity<ForumDTO> createForum(@RequestBody ForumDTO forumDTO) throws URISyntaxException {
-        if (forumDTO.getIdForum != null) {
+        if (forumDTO.getIdForum() != null) {
             return ResponseEntity.badRequest().body(null); // L'entité ne doit pas déjà avoir un ID.
         }
-        ForumDTO result = forumService.save(forumDTO);
-        return ResponseEntity.created(new URI("/api/forums/" + result.getIdForum())).body(result);
+        forumDTO.setCreatedDate(Instant.now());
+        ForumDTO forumSave = forumService.save(forumDTO);
+        return ResponseEntity.created(new URI("/api/forums/" + forumSave.getIdForum())).body(forumSave);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ForumDTO> updateForum(@PathVariable Long id, @RequestBody ForumDTO forumDTO) {
-        if (!id.equals(forumDTO.getIdForum())) {
-            return ResponseEntity.badRequest().body(null);
-        }
-        ForumDTO result = forumService.save(forumDTO);
-        return ResponseEntity.ok(result);
-    }
 
     @GetMapping
     public ResponseEntity<List<ForumDTO>> getAllForums() {
@@ -48,9 +46,5 @@ public class ForumResource {
         return forumDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteForum(@PathVariable Long id) {
-        forumService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
+
 }

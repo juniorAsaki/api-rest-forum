@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface MessageService {
     MessageDTO save(MessageDTO messageDTO);
-    List<MessageDTO> findAll();
+    List<MessageDTO> findAllByIdSujet(Long id);
 }

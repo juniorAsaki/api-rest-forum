@@ -6,6 +6,7 @@ import com.ada.ci.api_rest_forum.repositories.ForumRepository;
 import com.ada.ci.api_rest_forum.services.ForumService;
 import com.ada.ci.api_rest_forum.services.dto.ForumDTO;
 import com.ada.ci.api_rest_forum.services.mapper.ForumMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,15 +14,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ForumServiceImpl implements ForumService {
 
     private final ForumRepository forumRepository;
     private final ForumMapper forumMapper;
 
-    public ForumServiceImpl(ForumRepository forumRepository, ForumMapper forumMapper) {
-        this.forumRepository = forumRepository;
-        this.forumMapper = forumMapper;
-    }
 
     @Override
     public ForumDTO save(ForumDTO forumDTO) {
@@ -43,8 +41,4 @@ public class ForumServiceImpl implements ForumService {
                 .map(forumMapper::ToDto);
     }
 
-    @Override
-    public void delete(Long id) {
-        forumRepository.deleteById(id);
-    }
 }

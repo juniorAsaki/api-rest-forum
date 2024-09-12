@@ -6,6 +6,8 @@ import com.ada.ci.api_rest_forum.models.Message;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class SujetDTO {
@@ -16,7 +18,7 @@ public class SujetDTO {
 
     private ForumDTO forum;
 
-    private MessageDTO message;
+//    private List<MessageDTO> messages;
 
     private String slug;
 }

@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ForumService {
+
     ForumDTO save(ForumDTO forumDTO);
 
     List<ForumDTO> findAll();
 
     Optional<ForumDTO> findOne(Long id);
 
-    void delete(Long id);
 }
 
 

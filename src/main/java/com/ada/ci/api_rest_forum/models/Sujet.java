@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Entity
 @Setter
@@ -15,16 +17,14 @@ public class Sujet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSujet;
 
-    @Column(name = "title",nullable = false)
+    @Column(name = "title")
     private String title;
 
-    @ManyToMany
-    @JoinColumn(name = "idForum")
+    @ManyToOne
     private Forum forum;
 
-    @OneToMany
-    @JoinColumn(name = "idMessage")
-    private Message message;
+//    @OneToMany
+//    private List<Message> message;
 
     @Column(unique = true)
     private String slug;

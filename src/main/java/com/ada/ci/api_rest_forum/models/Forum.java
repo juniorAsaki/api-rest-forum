@@ -16,13 +16,13 @@ public class Forum {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idForum;
 
-    @Column(name = "title",nullable = false)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "description",nullable = false )
+    @Column(name = "description" )
     private String description;
 
-    @Column(name = "createdDate",nullable = false)
+    @Column(name = "createdDate")
     private Instant createdDate;
 
     @Column(unique = true)

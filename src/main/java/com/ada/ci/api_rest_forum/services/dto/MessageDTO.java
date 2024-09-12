@@ -1,5 +1,6 @@
 package com.ada.ci.api_rest_forum.services.dto;
 
+import com.ada.ci.api_rest_forum.models.Sujet;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,8 @@ public class MessageDTO {
     private String content;
 
     private Instant createdDate;
+
+    private SujetDTO sujet;
 
     private String slug;
 }
