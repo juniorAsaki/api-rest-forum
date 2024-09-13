@@ -5,26 +5,27 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Entity
 @Setter
 @Table(name = "sujet")
-public class Sujet {
+public class Subject implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSujet;
+    private Long idSubject;
 
-    @Column(name = "title")
+    @Column(name = "title" , nullable = false)
     private String title;
 
     @ManyToOne
     private Forum forum;
 
-//    @OneToMany
-//    private List<Message> message;
+    @OneToMany
+    private List<Message> message;
 
     @Column(unique = true)
     private String slug;
