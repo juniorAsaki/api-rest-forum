@@ -16,6 +16,8 @@ Swagger- pour la documentation
 L'API sera disponible sur http://localhost:8080
 Vous pouvez tester l'API à l'aide de Postman .
 
+Accédé a la documentation via : https://documenter.getpostman.com/view/27883695/2sAXqnfkBc
+
 Installation
 On va dans ressources puis application poperties pous la configution de notre base de données
 spring.application.name=api_rest_forum
